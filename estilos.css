@@ -1,49 +1,62 @@
-/* Reset */
+/* Reset básico */
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 }
-/* General */
-body{
-font-family:Arial, sans-serif;
-}
-/* Header */
-header{
-background:#333;
-color:white;
-text-align:center;
-padding:20px;
-}
-/* Menú */
-.menu{
-display:flex;
-justify-content:space-around;
-background:#555;
-}
-.menu div{
-padding:15px;
-color:white;
-}
-/* Contenedor principal (Grid) */
+/* Contenedor principal */
 .contenedor{
 display:grid;
-grid-template-columns: 3fr 1fr;
-gap:20px;
-padding:20px;
-
+grid-template-columns: 1fr 3fr 1fr;
+grid-template-rows: auto auto 1fr auto;
+grid-template-areas:
+"header header header"
+"nav nav nav"
+"aside main main"
+"footer footer footer";
+gap:10px;
+min-height:100vh;
+padding:10px;
 }
-/* Contenido */
-.contenido{
+/* Áreas */
+header{
+grid-area:header;
+background:#333;
+color:white;
+padding:20px;
+text-align:center;
+}
+nav{
+grid-area:nav;
+background:#555;
+}
+nav ul{
+display:flex;
+justify-content:space-around;
+list-style:none;
+padding:10px;
+}
+nav li{
+color:white;
+}
+main{
+grid-area:main;
 background:#f4f4f4;
 padding:20px;
 }
-/* Sidebar */
-.sidebar{
+aside{
+grid-area:aside;
 background:#ddd;
 padding:20px;
 }
-/* Tarjetas (Flexbox) */
+footer{
+grid-area:footer;
+background:#333;
+color:white;
+text-align:center;
+padding:10px;
+}
+/* Tarjetas internas (usa Flexbox) */
 .tarjetas{
 display:flex;
 gap:10px;
@@ -56,33 +69,23 @@ border:1px solid #ccc;
 flex:1;
 text-align:center;
 }
-/* Footer */
-footer{
-background:#333;
-color:white;
-text-align:center;
-padding:10px;
-}
-/* ===================== */
-/* DISEÑO RESPONSIVO */
-/* ===================== */
+/* RESPONSIVO */
 @media (max-width:768px){
-/* Menú vertical */
-.menu{
+.contenedor{
+grid-template-columns:1fr;
+grid-template-areas:
+"header"
+"nav"
+
+"main"
+"aside"
+"footer";
+}
+nav ul{
 flex-direction:column;
 align-items:center;
 }
-/* Grid a una columna */
-.contenedor{
-grid-template-columns:1fr;
-
-}
-/* Tarjetas en columna */
 .tarjetas{
 flex-direction:column;
-}
-/* Ajuste de texto */
-header h1{
-font-size:20px;
 }
 }
